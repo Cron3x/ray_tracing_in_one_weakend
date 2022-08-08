@@ -1,8 +1,21 @@
-use crate::vec3::{Point3, Vec3};
-trait Ray {
-	fn ray();
-	fn ray_args(origin: Point3, direction: Vec3);
-	fn origin() -> Point3;
-	fn direction() -> Vec3;
-	fn at(t:f64) -> Point3 {Self::origin() + Self::direction() * t}
+use crate::vec3_mod::{Point3, Vec3};
+
+#[derive(Debug, Copy, Clone, PartialEq)]
+pub struct Ray {
+	orig:Point3,
+	dir: Vec3,
+}
+
+impl Ray {
+	pub fn ray(&mut self, origin: Point3, direction: Vec3){
+		self.dir  = direction;
+		self.orig = origin;
+	}
+	pub fn origin(self) -> Point3{
+		self.orig
+	}
+	pub fn direction(self) -> Vec3{
+		self.dir
+	}
+	pub fn at(self, t:f64) -> Point3 {(self.direction() * t) + self.origin() }
 }
