@@ -2,8 +2,8 @@ use crate::vec3_mod::{Point3, Vec3};
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Ray {
-	orig:Point3,
-	dir: Vec3,
+	pub orig:Point3,
+	pub dir: Vec3,
 }
 
 impl Ray {

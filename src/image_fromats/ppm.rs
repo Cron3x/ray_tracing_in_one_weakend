@@ -21,10 +21,10 @@ impl PPMImageFormat {
 			}
 			for i in 0..width {
 				let pixel_color:Color = vec3(i as f64 / (width as f64 - 1 as f64), j as f64 / (height as f64 - 1 as f64), 0.25);
-
 				image_vec.push(color::write_color(pixel_color));
 			}
 		}
+		
 		print!("\nDone");
 		Self {
 			image_vec: image_vec,
