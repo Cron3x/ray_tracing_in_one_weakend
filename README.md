@@ -7,7 +7,7 @@ So far everything workes...
 I only upload the changes to Github so I can develop on diverent devices without the hussle of privat repos
 
 ## References:
- - https://raytracing.github.io/books/RayTracingInOneWeekend.html#overview
-
+ - Tutorial: https://raytracing.github.io/books/RayTracingInOneWeekend.html#overview
+ - PPM Viewer: https://www.cs.rhodes.edu/welshc/COMP141_F16/ppmReader.html
 
 

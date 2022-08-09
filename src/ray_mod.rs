@@ -17,5 +17,5 @@ impl Ray {
 	pub fn direction(self) -> Vec3{
 		self.dir
 	}
-	pub fn at(self, t:f64) -> Point3 {(self.direction() * t) + self.origin() }
+	pub fn at(self, t:f64) -> Point3 {(self.dir * t) + self.orig }
 }

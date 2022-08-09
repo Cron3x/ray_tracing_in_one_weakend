@@ -61,7 +61,7 @@ impl Div<f64> for Vec3 {
 	type Output = Self;
 
     fn div(self, other: f64) -> Self {
-        Self{x:self.x * other, y:self.y * other, z:self.z * other}
+        Self{x:self.x / other, y:self.y / other, z:self.z / other}
     }
 }
 
