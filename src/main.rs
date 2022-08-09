@@ -33,24 +33,23 @@ fn main() {
     
     let mut image_vec:Vec<String> = Vec::new();
 
-		image_vec.push("P3".to_string());
-		image_vec.push(format!("{image_width} {image_height}"));
-		image_vec.push("255".to_string());
-    
-        for j in (0..image_height).rev() {
-            println!("Scanlines remaining: {}", j);
-            for i in 0..image_width {
-                
-                let u:f64 = i as f64 / (image_width-1) as f64;
-                let v:f64 = j as f64 / (image_height-1) as f64;
-                println!("horizontal: {:?}", horizontal/2.0);
-                let r:Ray = Ray{orig: origin, dir: lower_left_corner + horizontal*u + vertical*v - origin};
-                let pixel_color = ray_color(&r);
-                let px = color::write_color(pixel_color);
-                image_vec.push(px);
-            }
+    image_vec.push("P3".to_string());
+    image_vec.push(format!("{image_width} {image_height}"));
+    image_vec.push("255".to_string());
+
+    for j in (0..image_height).rev() {
+        print!("\rScanlines remaining: {}", j);
+        for i in 0..image_width {
+            
+            let u:f64 = i as f64 / (image_width-1) as f64;
+            let v:f64 = j as f64 / (image_height-1) as f64;
+            let r:Ray = Ray{orig: origin, dir: lower_left_corner + horizontal*u + vertical*v - origin};
+            let pixel_color = ray_color(&r);
+            let px = color::write_color(pixel_color);
+            image_vec.push(px);
         }
+    }
     let img_file:PPMImageFormat = PPMImageFormat { image_vec: image_vec };
     img_file.save("./dbg.ppm".to_string()).unwrap();
-
+    println!("\nDone.");
 }
