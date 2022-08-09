@@ -28,6 +28,8 @@ fn main() {
     let lower_left_corner = origin - horizontal/2f64 - vertical/2f64 - vec3(0f64, 0f64, focal_length);
     // Render
 
+    println!("-- {:?} --",lower_left_corner);
+
     //image_fromats::ppm::PPMImageFormat::new(10,10).save("./t.ppm".to_string()).unwrap();
     
     let mut image_vec:Vec<String> = Vec::new();
@@ -41,10 +43,12 @@ fn main() {
                 
                 let u:f64 = i as f64 / (image_width-1) as f64;
                 let v:f64 = j as f64 / (image_height-1) as f64;
-                println!("{}",u);
+                //println!("{}",u);
                 let r:Ray = Ray{orig: origin, dir: lower_left_corner + horizontal*u + vertical*v - origin};
                 let pixel_color = ray_color(&r);
-                image_vec.push(color::write_color(pixel_color));
+                println!("{:?}",pixel_color);
+                let px = color::write_color(pixel_color);
+                image_vec.push(px);
             }
         }
     let img_file:PPMImageFormat = PPMImageFormat { image_vec: image_vec };
