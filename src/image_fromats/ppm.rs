@@ -1,6 +1,6 @@
 use std::{fs::File, io::Write};
 
-use crate::vec3_mod::{color, Color, vec3};
+use crate::{vec3::{Color, vec3}, color};
 
 
 pub struct PPMImageFormat {

@@ -1,7 +1,5 @@
 use std::{ops::{Add, Sub, Mul, Div, AddAssign, MulAssign, DivAssign}};
 
-pub mod color;
-
 #[derive(Debug, Copy, Clone, PartialEq)]
 pub struct Vec3 {
     pub x:f64,
@@ -18,12 +16,20 @@ impl Vec3 {
     }
 }
 
-pub fn unit_vector(v:Vec3) -> Vec3{
-    v / v.length()
-}
 pub fn vec3(x:f64,y:f64,z:f64)->Vec3{
     Vec3 { x: x, y: y, z: z }
 }
+pub fn rgb(r:f64,g:f64,b:f64)->Vec3{
+    Vec3 { x: r, y: g, z: b }
+}
+
+pub fn unit_vector(v:Vec3) -> Vec3{
+    v / v.length()
+}
+pub fn dot(u:Vec3, v:Vec3) -> f64 {
+    u.x * v.x + u.y * v.y + u.z * v.z
+}
+
 
 impl Add for Vec3 {
 	type Output = Self;

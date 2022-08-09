@@ -1,16 +1,26 @@
 mod image_fromats;
-mod vec3_mod;
-mod ray_mod;
+mod vec3;
+mod ray;
+mod color;
+mod hittable;
+mod sphere;
 
+use hittable::Hittable;
 use image_fromats::ppm::PPMImageFormat;
-use ray_mod::Ray;
-use vec3_mod::{Vec3, unit_vector, color::{self, write_color}, vec3, Color, Point3};
+use ray::Ray;
+use sphere::Sphere;
+use vec3::{Vec3, unit_vector, vec3, Color, Point3, rgb};
 
 fn ray_color(r:&Ray) -> Color{
+    let t = Sphere::new(vec3(0.0,0.0,-1.0), 0.5).hit(r, 0, 10, \/);
+    if t > 0.0{
+        let n:Vec3 = unit_vector(r.at(t) - vec3(0.0,0.0,-1.0));
+        return rgb(n.x+1f64,n.y+1f64,n.z+1f64)*0.5;
+    }
     //println!("{:?}",r.direction());
     let unit_direction: Vec3 = unit_vector(r.direction());
     let t:f64 = 0.5 * (unit_direction.y +1.0);
-    vec3(1.0, 1.0, 1.0)*(1.0-t) + vec3(0.5, 0.7, 1.0)*t
+    rgb(1.0, 1.0, 1.0)*(1.0-t) + rgb(0.5, 0.7, 1.0)*t
 }
 fn main() {
     // Image
